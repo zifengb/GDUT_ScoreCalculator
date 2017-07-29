@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绩点计算器网页版</title>
+	<style type="text/css">
+		#result {
+			resize: none;
+		}
+		#display_result {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<h2>请把成绩复制粘贴到下面文本框：(Tip: PC操作最佳)</h2>
+<textarea id="result" cols="80" rows="30"></textarea><br />
+<button id= "getResult" type="button">计算绩点</button>
+
+<div id="display_result">
+	<h4>你的平均绩点为：</h4>
+	<strong></strong>
+</div>
+
+<script src="calcScore.js"></script>
+<script type="text/javascript">
+	document.querySelector('#getResult').addEventListener('click', function (){
+		var scoreText = document.querySelector('#result').value;
+		var r = getGrade(scoreText);
+		if (r) {
+				document.querySelector('#display_result').style.display = 'block';
+				document.querySelector('#display_result > strong').textContent = r.averagePoint;
+		}
+	}, false);
+</script>
+
+</body>
+</html>
