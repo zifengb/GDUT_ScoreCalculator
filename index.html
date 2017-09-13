@@ -10,6 +10,17 @@
 		#display_result {
 			display: none;
 		}
+		#list {
+			width: 50%;
+			border-collapse: collapse;
+		}
+		#list tr th {
+			text-align: left;
+		}
+		#list tr td,
+		#list tr th {
+			border: 1px solid #ccc;
+		}
 	</style>
 </head>
 <body>
@@ -18,6 +29,18 @@
 <button id= "getResult" type="button">计算绩点</button>
 
 <div id="display_result">
+	<table id="list">
+		<caption><h3>详细成绩单</h3></caption>
+		<thead>
+			<tr>
+				<th>课程名称</th>
+				<th>学分</th>
+				<th>成绩</th>
+				<th>绩点</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
 	<h4>你的平均绩点为：</h4>
 	<strong></strong>
 </div>
@@ -28,9 +51,22 @@
 		var scoreText = document.querySelector('#result').value;
 		var r = getGrade(scoreText);
 		if (r) {
-				document.querySelector('#display_result').style.display = 'block';
-				document.querySelector('#display_result > strong').textContent = r.averagePoint;
+			var list = r.record, list_text = '';
+
+			for (var i = 0, len = list.length; i < len; i++) {
+				list_text += '<tr>'+
+												'<td>'+list[i].project+'</td>'+
+												'<td>'+list[i].grade+'</td>'+
+												'<td>'+list[i].score100+'</td>'+
+												'<td>'+list[i].point+'</td>'+
+										 '</tr>';
+			}
+
+			document.querySelector('#list > tbody').innerHTML = list_text;
+			document.querySelector('#display_result').style.display = 'block';
+			document.querySelector('#display_result > strong').textContent = r.averagePoint;
 		}
+
 	}, false);
 </script>
 
