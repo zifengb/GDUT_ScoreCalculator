@@ -12,14 +12,14 @@ function format(str) {
 		// 记录成绩的数组
 		var record = [];
 		for (var i = 0, len = arr.length; i< len; i++) {
-				var scoreStr = /\d([^0-9]+)[\r\n]((\d{1,2})|[\u4E00-\u9FA5\uF900-\uFA2D]+)[\r\n]([0-9]\.?[0-9]?)[\r\n](\d{1,2})[\r\n]([0-9]\.?[0-9]?)/;
+				var scoreStr = /\d([^0-9]+)[\r\n]((?:\d{1,2})|[\u4E00-\u9FA5\uF900-\uFA2D]+)[\r\n]([0-9]\.?[0-9]?)[\r\n](\d{1,2})[\r\n]([0-9]\.?[0-9]?)/;
 				if (scoreStr.test(arr[i])) {
 						record.push({
 							'project': RegExp.$1, // 科目
 							'score100': RegExp.$2, // 百分制分数
-							'point': RegExp.$4,		// 绩点
-							'hour': RegExp.$5,		// 学时
-							'grade': RegExp.$6		// 学分
+							'point': RegExp.$3,		// 绩点
+							'hour': RegExp.$4,		// 学时
+							'grade': RegExp.$5		// 学分
 						});
 				}
 		}
